@@ -10,7 +10,7 @@
         serviceId = 'jAppSettings';
 
     app.constant(serviceId, {
-        cloudPath: 'https://api.williamsact.org/',
+            cloudPath: 'https://api.williamsact.org/',
             localPath: 'http://localhost:51624/'
         }
     )
