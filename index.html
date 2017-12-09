@@ -94,7 +94,7 @@
         <p class="txt">{{ question.question }}</p>
 
         <!-- Inner Loop Begins: -->
-        <p class="ans" ng-class="{
+        <div class="ans" ng-class="{
 			    'image': answer.image,
 			    'selected': isSelected($parent.$index, $index),
 			    'correct': isCorrect($parent.$index, $index)
@@ -103,7 +103,7 @@
 			   }" ng-click="selectAnswer($parent.$index, $index)"
            ng-repeat="answer in question.answers">
             {{ answer.text }}
-        </p>
+        </div>
 
         <!-- feedback: -->
         <div class="feedback">
@@ -167,7 +167,13 @@
 <script src="scripts/moment.js"></script>
 <script src="scripts/spin.js"></script>
 
+
+<!-- This is the Actual "Get a quote" code for lab916 -->
 <script src="quote.js"></script>
+
+<!------------------------------------------>
+<!-- Stuff from CEDR Systems just in case -->
+<!------------------------------------------>
 
 <!-- Bootstrapping, starts to app.
 <script src="app/app.js"></script>

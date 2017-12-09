@@ -40,13 +40,16 @@
 
 #lab916-quote .question .ans {
     display: inline-block;
-    border: solid thin whitesmoke;
-    border-radius: 8px;
+    /*border: solid thin whitesmoke;*/
+    background-color: whitesmoke;
+    /*border-radius: 8px;*/
     padding: 8px;
-    width: 40%;
+    width: 200px;
+    height: 200px;
     position: relative;
     cursor: pointer;
     margin: 8px 8px;
+    box-shadow: 2px 4px 50px 10px rgba(0,0,0, 0.3);
 }
 
 #lab916-quote .active, #lab916-quote .inactive {
@@ -55,7 +58,7 @@
 
 /* ---- FEEDBACK ----*/
 #lab916-quote .question.unanswered .feedback {
-    /*margin-top: 50px;*/
+    /* margin-top: 50px; */
     transition: opacity 0.5s, margin-top 0.5s;
     visibility: hidden;
     opacity: 0;
