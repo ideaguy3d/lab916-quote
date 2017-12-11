@@ -2,7 +2,7 @@
   {
     "question": "Services Required?",
     "answers": [
-      {"id": 0, "text": "Amazon marketing Services"},
+      {"id": 0, "text": "Amazon marketing"},
       {"id": 1, "text": "Essential Content"},
       {"id": 2, "text": "Enhanced Content"},
       {"id": 3, "text": "Other Services Required"}

@@ -1,0 +1,17 @@
+<table class="list-controller">
+	<colgroup>
+		<col style="width: 5%">
+		<col style="width: 35%">
+		<col style="width: 60%">
+	</colgroup>
+	<tbody>
+	<tr ng-repeat="mail in mails"
+	    ng-click="viewMail(mail)">
+		<td class="text-center">
+			<input type="checkbox"/>
+		</td>
+		<td>{{mail.to}}</td>
+		<td>{{mail.subject}}</td>
+	</tr>
+	</tbody>
+</table>

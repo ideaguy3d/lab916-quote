@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+        .ng-hide {
+            display: none !important;
+        }
+    </style>
+    <title>Lab916 Get A Quote</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+
+    <script>
+        // Must be first. IE10 mobile viewport fix
+        if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            var mq = "@-ms-viewport{width:auto!important}";
+            msViewportStyle.appendChild(document.createTextNode(mq));
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        }
+    </script>
+
+    <link href="content/ie10mobile.css" rel="stylesheet"/>
+    <!--<link href="content/bootstrap.min.css" rel="stylesheet"/>-->
+    <link href="content/font-awesome.min.css" rel="stylesheet"/>
+    <link href="content/toastr.css" rel="stylesheet"/>
+    <link href="content/customtheme.css" rel="stylesheet">
+    <link href="content/bootstrap-responsive.min.css" rel="stylesheet"/>
+    <link href="content/styles.css" rel="stylesheet"/>
+
+    <!-- williams-act-ui design code -->
+    <script src="https://use.fontawesome.com/0ba090167e.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- <link href="content/breeze.directives.css" rel="stylesheet"/> -->
+</head>
+
+<body data-ng-app="quote">
+
+<nav id="mainMenu" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="img/lab916.jpg" width="105px" height="30px" alt=""/></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li>List Item</li>
+        </ul>
+    </div><!--/.nav-collapse -->
+</nav>
+
+<br><br><br>
+
+<h1 class="text-center">Get a Quote</h1>
+
+<!-- Animated Quote Questionaire -->
+<section id="lab916-quote" data-ng-controller="QuoteCtrl as quote">
+
+    <div class="intro {{ (activeQuestion > -1) ? 'inactive' : 'active' }}">
+        <h2>Online retailer sites of interest:</h2>
+        <p>(select one or more)</p>
+        <button class="btn btn-warning" ng-click="activeQuestion = 0">Amazon</button>
+        <button class="btn btn-success" ng-click="activeQuestion = 0">Corporate Site</button>
+        <button class="btn btn-primary" ng-click="activeQuestion = 0">Walmart</button>
+        <button class="btn btn-info" ng-click="activeQuestion = 0">Other Retailer</button>
+    </div>
+
+    <div ng-repeat="question in myQuestions" class="question
+		{{ question.questionState === 'answered' ? 'answered' : 'unanswered' }}
+		{{ $index === activeQuestion ? 'active' : 'inactive' }}">
+
+        <!-- The Question -->
+        <p class="txt">{{ question.question }}</p>
+
+        <!-- Inner Loop Begins: -->
+        <div class="ans" ng-class="{
+			    'image': answer.image,
+			    'selected': isSelected($parent.$index, $index),
+			    'correct': isCorrect($parent.$index, $index)
+			   }" ng-style="{
+			    'background-image': 'url({{answer.image}})'
+			   }" ng-click="selectAnswer($parent.$index, $index)"
+           ng-repeat="answer in question.answers">
+            {{ answer.text }}
+        </div>
+
+        <!-- feedback: -->
+        <div class="feedback">
+            <!--
+             <p ng-show="question.correctness === 'correct'">
+                Correct! Good job ^_^
+            </p>
+            <p ng-show="question.correctness === 'incorrect'">
+                Wrong. Keep on studying. :/
+            </p>
+             -->
+
+            <!--<p>{{ question.feedback }}</p>-->
+            <div class="btn btn-sm btn-info" ng-click="selectContinue()">
+                <strong>Continue</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--
+ -->
+<div>
+    <!-- <h1>{{ coreCtrl.coreCtrlMessage }}</h1>
+    <div ng-if="!coreCtrl.ccIsLoggedIn" data-ng-include="'./app/login/login.tem.html'"></div>
+    <div ng-if="coreCtrl.ccIsLoggedIn" data-ng-include="'./app/layout/shell.html'"></div>
+    -->
+
+    <!--
+     <div id="splash-page" data-ng-show="false">
+        <div class="page-splash">
+            <div class="page-splash-message">
+                Lab916 Application Loading...
+            </div>
+
+            <div class="progress progress-striped active page-progress-bar">
+                <div class="bar"></div>
+            </div>
+        </div>
+    </div>
+     -->
+
+</div>
+
+
+
+<span data-cc-scroll-to-top></span>
+
+<!-- Vendor Scripts -->
+<script src="scripts/jquery-2.0.3.js"></script>
+<!-- angular -->
+<script src="scripts/angular.min.js"></script>
+<script src="scripts/angular-animate.min.js"></script>
+<script src="scripts/angular-route.min.js"></script>
+<script src="scripts/angular-resource.min.js"></script>
+<script src="scripts/angular-sanitize.min.js"></script>
+<!-- other -->
+<script src="scripts/ui-bootstrap-tpls-0.6.0.js"></script>
+<script src="scripts/bootstrap.js"></script>
+<script src="scripts/toastr.js"></script>
+<script src="scripts/moment.js"></script>
+<script src="scripts/spin.js"></script>
+
+
+<!-- This is the Actual "Get a quote" code for lab916 -->
+<script src="quote.js"></script>
+
+<!------------------------------------------>
+<!-- Stuff from CEDR Systems just in case -->
+<!------------------------------------------>
+
+<!-- Bootstrapping, starts to app.
+<script src="app/app.js"></script>
+<script src="app/config.js"></script>
+<script src="app/config.exceptionHandler.js"></script>
+<script src="app/config.route.js"></script>
+-->
+<!-- common Modules
+<script src="app/common/common.js"></script>
+<script src="app/common/logger.js"></script>
+<script src="app/common/spinner.js"></script>
+<script src="app/common/app.settings.ser.js"></script>
+<script src="app/common/user.account.ser.js"></script>
+<script src="app/common/current.user.ser.js"></script>
+-->
+<!-- common.bootstrap Modules
+<script src="app/common/bootstrap/bootstrap.dialog.js"></script>
+-->
+<!-- app, the application files.
+<script src="app/core/core2.ctrl.js"></script>
+<script src="app/admin/admin.js"></script>
+<script src="app/dashboard/dashboard.js"></script>
+<script src="app/layout/shell.js"></script>
+<script src="app/layout/sidebar.js"></script>
+<script src="app/sessions/sessions.ctrl.js"></script>
+<script src="app/speakers/speakers.ctrl.js"></script>
+<script src="app/attendees/attendees.ctrl.js"></script>
+<script src="app/district-progress/district.progress.ctrl.js"></script>
+-->
+<!-- app Services
+<script src="app/services/datacontext.js"></script>
+<script src="app/services/directives.js"></script>
+<script src="app/services/routemediator.js"></script>
+-->
+
+</body>
+</html>

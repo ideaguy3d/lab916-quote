@@ -1,0 +1,39 @@
+<div class="create-controller card checkins">
+	- BitGo {{test}} -
+	<form name="myform"
+	      ng-submit="sendEmail()"
+	      novalidate>
+		
+		<div class="textintro">
+			<h1>Create an Email</h1>
+		</div>
+		
+		<fieldset>
+			<!-- MailTo -->
+			<input type="text" name="mailTo" placeholder="Email to send to?"
+			       ng-model="newEmail.mailTo" ng-required="true">
+			<p class="error validationerror"
+			        ng-show="myform.mailTo.$invalid && myform.mailTo.$touched">
+				Mail To required
+			</p>
+			
+			<!-- Subject -->
+			<input type="text" name="subject" placeholder="What to talk about?"
+			       ng-model="newEmail.subject" ng-required="true">
+			<p class="error validationerror"
+			   ng-show="myform.subject.$invalid && myform.subject.$touched">
+				Subject required</p>
+			
+			<!-- Message -->
+			<textarea name="message" placeholder="Message" rows="20"
+			          ng-model="newEmail.message" ng-required="true"></textarea>
+			<p class="error validationerror"
+			   ng-show="myform.message.$invalid && myform.message.$touched">
+				Message required</p>
+		</fieldset>
+		
+		<button type="submit" class="btn" ng-disabled="myform.$invalid">
+			Send
+		</button>
+	</form>
+</div>
