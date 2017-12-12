@@ -29,7 +29,6 @@
     <link href="device-mockups/device-mockups.min.css" rel="stylesheet" type="text/css">
 
 
-
     <link href="css/vitality-yellow.css" rel="stylesheet" type="text/css">
     <link href="css/custom.css" rel="stylesheet">
 
@@ -74,7 +73,7 @@
     </div>
 </nav>
 
-<!-- Hero Area Masthead -->
+<!-- Hero Landing Area Masthead -->
 <header class="masthead" style="background-image: url('img/agency/backgrounds/bg-header.jpg');">
     <div class="container h-100">
         <div class="row h-100">
@@ -96,20 +95,23 @@
 <!-- About / Get A Quote Section -->
 <section class="page-section" id="about">
     <div class="container-fluid">
-        <div class="wow fadeIn text-center">
+        <div class="wow flipInY text-center">
             <h1>Get A Quote</h1>
             <!---------------------------------->
             <!-- Animated Quote Questionnaire -->
             <!---------------------------------->
             <section id="lab916-quote" data-ng-controller="QuoteCtrl as quote">
-
+                <div id="lab916-progress-container">
+                    <div class="{{($index === activeQuestion) ? 'on' : 'off'}}"
+                         ng-repeat="question in myQuestions"></div>
+                </div>
                 <div class="intro {{ (activeQuestion > -1) ? 'inactive' : 'active' }}">
                     <h2>Online retailer sites of interest:</h2>
                     <p>(select one or more)</p>
                     <button class="btn btn-warning" ng-click="activeQuestion = 0">Amazon</button>
                     <button class="btn btn-success" ng-click="activeQuestion = 0">Corporate Site</button>
-                    <button class="btn btn-primary" ng-click="activeQuestion = 0">Walmart</button>
-                    <button class="btn btn-info" ng-click="activeQuestion = 0">Other Retailer</button>
+                    <button class="btn btn-info" ng-click="activeQuestion = 0">Walmart</button>
+                    <button class="btn btn-primary" ng-click="activeQuestion = 0">Other Retailer</button>
                 </div>
 
                 <div ng-repeat="question in myQuestions" class="question
@@ -121,28 +123,16 @@
 
                     <!-- Inner Loop Begins: -->
                     <div class="ans" ng-class="{
-			    'image': answer.image,
-			    'selected': isSelected($parent.$index, $index),
-			    'correct': isCorrect($parent.$index, $index)
-			   }" ng-style="{
-			    'background-image': 'url({{answer.image}})'
-			   }" ng-click="selectAnswer($parent.$index, $index)"
+                            'selected': myQuestions[$parent.$index].answers[$index].optionIsSelected,
+                            'correct': isCorrect($parent.$index, $index)
+			             }"
+                         ng-click="selectAnswer($parent.$index, $index)"
                          ng-repeat="answer in question.answers">
                         {{ answer.text }}
                     </div>
 
                     <!-- feedback: -->
                     <div class="feedback">
-                        <!--
-                         <p ng-show="question.correctness === 'correct'">
-                            Correct! Good job ^_^
-                        </p>
-                        <p ng-show="question.correctness === 'incorrect'">
-                            Wrong. Keep on studying. :/
-                        </p>
-                         -->
-
-                        <!--<p>{{ question.feedback }}</p>-->
                         <div class="btn btn-sm btn-info" ng-click="selectContinue()">
                             <strong>Continue</strong>
                         </div>
@@ -263,7 +253,6 @@
 </footer>
 
 
-
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/popper/popper.min.js"></script>
@@ -290,7 +279,7 @@
 <!--<script src="js/mixitup-config.js"></script>-->
 
 <!-- This is the Actual "Get a quote" code for lab916 -->
-<script src="quote.js"></script>
+<script src="app.quote.js"></script>
 
 
 </body>

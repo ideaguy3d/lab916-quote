@@ -2,10 +2,10 @@
   {
     "question": "Services Required?",
     "answers": [
-      {"id": 0, "text": "Amazon marketing"},
-      {"id": 1, "text": "Essential Content"},
-      {"id": 2, "text": "Enhanced Content"},
-      {"id": 3, "text": "Other Services Required"}
+      {"id": 0, "text": "Amazon marketing", "optionIsSelected": false},
+      {"id": 1, "text": "Essential Content", "optionIsSelected": false},
+      {"id": 2, "text": "Enhanced Content", "optionIsSelected": false},
+      {"id": 3, "text": "Other Services Required", "optionIsSelected": false}
     ],
     "correct": 0,
     "feedback": "Lab916 are specialist in this service"
@@ -13,12 +13,12 @@
   {
     "question" : "Languages?",
     "answers"  : [
-      {"id"  : 0, "text" : "Hello (English)"},
-      {"id"  : 1, "text" : "Hallo (German)"},
-      {"id"  : 2, "text" : "Bonjour (French)"},
-      {"id"  : 3, "text" : "Hola (Spanish)"},
-      {"id"  : 4, "text" : "Ciao (Italian)"},
-      {"id"  : 5, "text" : "Ellohay (Other)"}
+      {"id"  : 0, "text" : "Hello (English)", "optionIsSelected": false},
+      {"id"  : 1, "text" : "Hallo (German)", "optionIsSelected": false},
+      {"id"  : 2, "text" : "Bonjour (French)", "optionIsSelected": false},
+      {"id"  : 3, "text" : "Hola (Spanish)", "optionIsSelected": false},
+      {"id"  : 4, "text" : "Ciao (Italian)", "optionIsSelected": false},
+      {"id"  : 5, "text" : "Ellohay (Other)", "optionIsSelected": false}
     ],
     "correct"  : 4,
     "feedback" : "Lab916 are specialist in this service"
@@ -26,8 +26,8 @@
   {
     "question" : "This will be a submit form",
     "answers"  : [
-      {"id"  : 0, "text" : "Cool :)"},
-      {"id"  : 1, "text" : "Awesome ^_^"}
+      {"id"  : 0, "text" : "Cool :)", "optionIsSelected": false},
+      {"id"  : 1, "text" : "Awesome ^_^", "optionIsSelected": false}
     ],
     "correct"  : 0,
     "feedback" : "Lab916 are specialist in this service"

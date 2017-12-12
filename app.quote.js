@@ -11,17 +11,6 @@
         controllerId = 'QuoteCtrl',
         factoryId = 'jDataSer';
 
-    /*
-     app.config(function ($routeProvider) {
-     $routeProvider.when('/grade-store', {
-     templateUrl: 'client/views/main.html',
-     controller: 'MainCtrl'
-     }).otherwise({
-     redirectTo: '/'
-     });
-     });
-     */
-
 
     //#region Quiz Application:
     app.factory(factoryId, ['$http', jDataServiceClass]);
@@ -34,11 +23,15 @@
         $scope.activeQuestion = -1;
         $scope.activeQuestionAnswered = 0;
         $scope.percentScore = 0;
+        $scope.optionIsSelected = false;
 
         $scope.selectAnswer = function (indexQuestion, indexAnswer) {
+            console.log("questionIndex = "+indexQuestion+" answerIndex = "+indexAnswer);
             var questionState = $scope.myQuestions[indexQuestion].questionState;
-
-            if (questionState !== 'answered') { // .questionState is falsey because user has yet to click on an answer
+            $scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected =
+                !$scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected;
+            // .questionState is falsey because user has yet to click on an answer
+            if (questionState !== 'answered') {
                 $scope.myQuestions[indexQuestion].selectedAnswer = indexAnswer;
                 var correctAnswer = $scope.myQuestions[indexQuestion].correct;
                 $scope.myQuestions[indexQuestion].correctAnswer = correctAnswer;
@@ -53,8 +46,7 @@
                 $scope.myQuestions[indexQuestion].questionState = 'answered';
             }
 
-            $scope.percentScore = (100 * ($scope.score / $scope.totalQuestions))
-                .toFixed(2);
+            $scope.percentScore = (100 * ($scope.score / $scope.totalQuestions)).toFixed(2);
         };
 
         $scope.isSelected = function (qIndex, aIndex) {
