@@ -58,6 +58,7 @@
         };
 
         $scope.selectContinue = function () {
+            console.log("jha - activeQuestion = "+$scope.activeQuestion);
             return $scope.activeQuestion += 1;
         };
 
