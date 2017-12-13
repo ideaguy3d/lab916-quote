@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab916 FORM TEST</title>
+</head>
+
+
+<body ng-app="quote">
+version 0.0.{{10-9}}
+<hr>
+<br>
+
+<section ng-controller="QuoteCtrl">
+    <h1>Controller is {{ status }}</h1>
+    <form name="createContactForm" ng-submit="createContact()"> <!--  id="contactForm" -->
+        <!-- Contacts' Name -->
+        <div class="row control-group">
+            <div class="form-group col-12 floating-label-form-group controls">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" id="name" required
+                       ng-model="contact.name">
+                <p class="help-block text-danger"></p>
+            </div>
+        </div>
+
+        <!-- Email Address -->
+        <div class="row control-group">
+            <div class="form-group col-12 floating-label-form-group controls">
+                <label>Email Address</label>
+                <input type="email" class="form-control" placeholder="Email Address" id="email" required
+                       ng-model="contact.email">
+                <p class="help-block text-danger"></p>
+            </div>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="row control-group">
+            <div class="form-group col-12 floating-label-form-group controls">
+                <label>Phone Number</label>
+                <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required
+                       ng-model="contact.number">
+                <p class="help-block text-danger"></p>
+            </div>
+        </div>
+
+        <!-- Contacts' Message -->
+        <div class="row control-group">
+            <div class="form-group col-12 floating-label-form-group controls">
+                <label>Message</label>
+                <textarea rows="5" class="form-control" placeholder="Message" id="message" required
+                          ng-model="contact.message"></textarea>
+                <p class="help-block text-danger"></p>
+            </div>
+        </div>
+
+        <br><div id="success"></div>
+
+        <!-- Submit Button -->
+        <div class="row">
+            <div class="form-group col-12">
+                <button type="submit" class="btn btn-secondary">Send</button>
+            </div>
+        </div>
+    </form>
+    {{testRes}}
+    <br>
+    <button ng-click="testMe()">test</button>
+    <p>{{testVal}}</p>
+</section>
+
+
+<script src="scripts/angular.js"></script>
+<script src="app.quote.js"></script>
+
+</body>
+</html>

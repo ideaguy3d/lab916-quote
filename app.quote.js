@@ -24,6 +24,23 @@
         $scope.activeQuestionAnswered = 0;
         $scope.percentScore = 0;
         $scope.optionIsSelected = false;
+        $scope.status = "Wired up (:";
+        $scope.contact = {};
+        $scope.testVal = 0;
+
+        $scope.createContact = function () {
+            console.log("jha - $scope.contact = ");
+            console.log($scope.contact);
+            jDataSer.createHubspotContact($scope.contact).then(function(res) {
+                $scope.testRes = "The response === "+res.data;
+                console.log("jha - res.data =");
+                console.log(res.data);
+            });
+        };
+
+        $scope.testMe = function () {
+            $scope.testVal++;
+        };
 
         $scope.selectAnswer = function (indexQuestion, indexAnswer) {
             console.log("questionIndex = "+indexQuestion+" answerIndex = "+indexAnswer);
@@ -92,9 +109,24 @@
             return $http.get('quote_data.json')
         };
 
+        var createHubspotContact = function(data) {
+            var action = encodeURIComponent('createContact');
+            var name = encodeURIComponent(data.name);
+            var email = encodeURIComponent(data.email);
+            var number = encodeURIComponent(data.number);
+            var message = encodeURIComponent(data.message);
+            console.log("jha - query string = ");
+            console.log('php/hubspot1.php?action='+action+'name='+name+'&email='
+                +email+'&number='+number+'&message='+message);
+            return $http.get('php/hubspot1.php?action='+action+'&name='+name+'&email='
+                +email+'&number='+number+'&message='+message);
+        };
+
+
         return {
             getQuizData: getQuizData,
-            getLocalQuizData: getLocalQuizData
+            getLocalQuizData: getLocalQuizData,
+            createHubspotContact: createHubspotContact
         }
     }
 
