@@ -11,8 +11,6 @@
 // echo 'it worked!! email = '.$_GET['email'].' | name = '.$_GET['name'].' | number = '.$_GET['number'].' | message/lastname = '.$_GET['message'];
 
 
-
-
 $arr = array(
     'properties' => array(
         array(
@@ -33,10 +31,11 @@ $arr = array(
         )
     )
 );
+
 $post_json = json_encode($arr);
+
 // $hapikey = readline("Enter hapikey: (demo for the demo portal): ");
 // sales/2776720/contacts
-//
 $endpoint = 'https://api.hubapi.com/contacts/v1/contact?hapikey=' . '5a880d43-3d88-4ec8-a46d-8e9ef05000f1';
 $ch = @curl_init();
 @curl_setopt($ch, CURLOPT_POST, true);
