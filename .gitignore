@@ -1,9 +1,7 @@
 .idea
-vendor
 **/.idea
 node_modules
 **/*.xml
 **/**/*.xml
 .idea/workspace.xml
 api/.idea/workspace.xml
-**/bower_components

@@ -11,7 +11,6 @@
         controllerId = 'QuoteCtrl',
         factoryId = 'jDataSer';
 
-
     //#region Quiz Application:
     app.factory(factoryId, ['$http', jDataServiceClass]);
 

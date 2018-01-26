@@ -16,10 +16,9 @@
     <!-- Custom fonts for this theme -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
           rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900' rel='stylesheet'
-          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900' rel='stylesheet' type='text/css'>
 
-    <!-- Plugin CSS -->
+    <!-- Vendor CSS -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css">
     <link href="vendor/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css">
@@ -28,10 +27,9 @@
     <link href="vendor/animate.css/animate.min.css" rel="stylesheet" type="text/css">
     <link href="device-mockups/device-mockups.min.css" rel="stylesheet" type="text/css">
 
-
+    <!-- Custom CSS -->
     <link href="css/lab916-yellow.css" rel="stylesheet" type="text/css">
     <link href="css/custom.css" rel="stylesheet">
-
 </head>
 
 
@@ -40,7 +38,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <a href="http://lab916.wpengine.com/mock10" class="navbar-brand js-scroll-trigger">
             <img class="img-fluid" src="img/lab916-logo.png" alt="logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -48,25 +46,16 @@
             <i class="fa fa-bars"></i>
             Menu
         </button>
+
+        <!-- 2 links on right -->
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">Quote</a>
+                    <a href="http://lab916.wpengine.com/" class="nav-link js-scroll-trigger">Home</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#team">Team</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#services">Process</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#work">Work</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#pricing">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                    <a href="http://lab916.wpengine.com/category/case-studies/" class="nav-link js-scroll-trigger">Case Studies</a>
                 </li>
             </ul>
         </div>
@@ -78,8 +67,8 @@
     <div class="container h-100">
         <div class="row h-100">
             <div class="col-12 my-auto text-center text-white">
-                <img class="masthead-img img-fluid mb-3" src="img/lab916-logo.png" alt="">
-                <div class="masthead-title">Free Quote</div>
+                <img class="masthead-img img-fluid mb-3" src="img/lab916-logo.png" alt="lab 916">
+                <div class="masthead-title">Free Lab916 Quote</div>
                 <hr class="colored">
                 <div class="masthead-subtitle">Animated interactive questionnaire</div>
             </div>
@@ -92,7 +81,7 @@
     </div>
 </header>
 
-<!-- About / Get A Quote Section -->
+<!-- Get A Quote Section -->
 <section class="page-section" id="about">
     <div class="container-fluid">
         <div class="wow flipInY text-center">
@@ -105,6 +94,7 @@
                     <div class="{{($index === activeQuestion) ? 'on' : 'off'}}"
                          ng-repeat="question in myQuestions"></div>
                 </div>
+
                 <!-- 1) Intro Slide: -->
                 <div class="intro {{ (activeQuestion > -1) ? 'inactive' : 'active' }}">
                     <h2>Online retailer sites of interest:</h2>
@@ -142,7 +132,7 @@
                 </div>
 
                 <!-- 3) Contact Form: -->
-                <div id="contact" ng-class="{'active' : (activeQuestion === 3) }" >
+                <div id="contact" ng-class="{'active' : (activeQuestion === 3) }">
                     <div class="text-center">
                         <h3>Contact Us</h3>
                         <hr class="colored">
@@ -152,6 +142,7 @@
                     <div class="row mt-4">
                         <div class="col-lg-8 mx-auto">
                             <form name="sentMessage" id="contactForm" novalidate>
+                                <!-- Name field -->
                                 <div class="row control-group">
                                     <div class="form-group col-12 floating-label-form-group controls">
                                         <label>Name</label>
@@ -160,6 +151,8 @@
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
+
+                                <!-- Email Field -->
                                 <div class="row control-group">
                                     <div class="form-group col-12 floating-label-form-group controls">
                                         <label>Email Address</label>
@@ -169,15 +162,18 @@
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
+
+                                <!-- Phone Number Field -->
                                 <div class="row control-group">
                                     <div class="form-group col-12 floating-label-form-group controls">
                                         <label>Phone Number</label>
                                         <input type="tel" class="form-control" placeholder="Phone Number" id="phone"
-                                               required
-                                               data-validation-required-message="Please enter your phone number.">
+                                               required data-validation-required-message="Please enter your phone number.">
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
+
+                                <!-- Message Field -->
                                 <div class="row control-group">
                                     <div class="form-group col-12 floating-label-form-group controls">
                                         <label>Message</label>
@@ -187,13 +183,16 @@
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
-                                <br>
-                                <div id="success"></div>
+
+                                <!-- Send Button -->
                                 <div class="row">
                                     <div class="form-group col-12">
                                         <button type="submit" class="btn btn-secondary">Send</button>
                                     </div>
                                 </div>
+
+                                <!-- AJAX callback div -->
+                                <div id="success"></div>
                             </form>
                         </div>
                     </div>
