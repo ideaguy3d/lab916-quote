@@ -24,14 +24,22 @@
         $scope.percentScore = 0;
         $scope.optionIsSelected = false;
         $scope.status = "Wired up (:";
+        // contact is for test purposes
         $scope.contact = {};
         $scope.testVal = 0;
+        // contactHub is the real Hubspot req obj
+        $scope.contactHub = {};
+
+        $scope.hubspotReq = function () {
+            console.log("jha - contactHub Object = ");
+            console.log($scope.contactHub);
+        };
 
         $scope.createContact = function () {
             console.log("jha - $scope.contact = ");
             console.log($scope.contact);
-            jDataSer.createHubspotContact($scope.contact).then(function(res) {
-                $scope.testRes = "The response === "+res.data;
+            jDataSer.createHubspotContact($scope.contact).then(function (res) {
+                $scope.testRes = "The response === " + res.data;
                 console.log("jha - res.data =");
                 console.log(res.data);
             });
@@ -42,7 +50,7 @@
         };
 
         $scope.selectAnswer = function (indexQuestion, indexAnswer) {
-            console.log("questionIndex = "+indexQuestion+" answerIndex = "+indexAnswer);
+            console.log("questionIndex = " + indexQuestion + " answerIndex = " + indexAnswer);
             var questionState = $scope.myQuestions[indexQuestion].questionState;
             $scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected =
                 !$scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected;
@@ -74,7 +82,7 @@
         };
 
         $scope.selectContinue = function () {
-            console.log("jha - activeQuestion = "+$scope.activeQuestion);
+            console.log("jha - activeQuestion = " + $scope.activeQuestion);
             return $scope.activeQuestion += 1;
         };
 
@@ -90,6 +98,7 @@
         };
 
         activate();
+
         function activate() {
             jDataSer.getLocalQuizData().then(function (res) {
                 $scope.myQuestions = res.data;
@@ -108,17 +117,17 @@
             return $http.get('quote_data.json')
         };
 
-        var createHubspotContact = function(data) {
+        var createHubspotContact = function (data) {
             var action = encodeURIComponent('createContact');
             var name = encodeURIComponent(data.name);
             var email = encodeURIComponent(data.email);
             var number = encodeURIComponent(data.number);
             var message = encodeURIComponent(data.message);
             console.log("jha - query string = ");
-            console.log('php/hubspot1.php?action='+action+'name='+name+'&email='
-                +email+'&number='+number+'&message='+message);
-            return $http.get('php/hubspot1.php?action='+action+'&name='+name+'&email='
-                +email+'&number='+number+'&message='+message);
+            console.log('php/hubspot1.php?action=' + action + 'name=' + name + '&email='
+                + email + '&number=' + number + '&message=' + message);
+            return $http.get('php/hubspot1.php?action=' + action + '&name=' + name + '&email='
+                + email + '&number=' + number + '&message=' + message);
         };
 
 

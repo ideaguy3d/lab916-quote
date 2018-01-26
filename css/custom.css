@@ -51,6 +51,7 @@
     position: absolute;
     top: 1400px;
     left: 300px;
+    width: 60%;
 }
 
 
@@ -120,6 +121,10 @@
 
 #lab916-quote .active {
     top: 50px !important;
+}
+
+#lab916-quote #contact.active {
+    top: 10px !important;
 }
 
 /*
