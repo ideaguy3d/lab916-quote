@@ -28,6 +28,10 @@ $arr = array(
         array(
             'property' => 'phone',
             'value' => $_GET['number']
+        ),
+        array(
+            'property' => 'current_selling_channels',
+            'value' => $_GET['current-selling-channels']
         )
     )
 );

@@ -19,7 +19,7 @@
     function QuoteCtrlClass($scope, $sce, jDataSer) {
         $scope.introMessage = 'Test your knowledge';
         $scope.score = 0;
-        $scope.activeQuestion = -1;
+        $scope.activeQuestion = 0; // set activeQuestion to -1 and uncomment 'Intro Slide' to get the intro slide back
         $scope.activeQuestionAnswered = 0;
         $scope.percentScore = 0;
         $scope.optionIsSelected = false;
@@ -27,8 +27,15 @@
         // contact is for test purposes
         $scope.contact = {};
         $scope.testVal = 0;
-        // contactHub is the real Hubspot req obj
-        $scope.contactHub = {};
+
+        // contactHub is the real HubSpot req obj
+        $scope.contactHub = {
+            email: "test"+Math.random()+"@lab916.com",
+            name: "user"+Math.random(),
+            message: "id = "+Math.random(),
+            number: "916-123-4567",
+            currentSalesChannels: ""
+        };
 
         $scope.hubspotReq = function () {
             console.log("jha - contactHub Object = ");
@@ -36,9 +43,7 @@
         };
 
         $scope.createContact = function () {
-            console.log("jha - $scope.contact = ");
-            console.log($scope.contact);
-            jDataSer.createHubspotContact($scope.contact).then(function (res) {
+            jDataSer.createHubspotContact($scope.contactHub).then(function (res) {
                 $scope.testRes = "The response === " + res.data;
                 console.log("jha - res.data =");
                 console.log(res.data);
@@ -50,10 +55,15 @@
         };
 
         $scope.selectAnswer = function (indexQuestion, indexAnswer) {
-            console.log("questionIndex = " + indexQuestion + " answerIndex = " + indexAnswer);
             var questionState = $scope.myQuestions[indexQuestion].questionState;
+
+            console.log("jha - The user selected = "+$scope.myQuestions[indexQuestion].answers[indexAnswer].text);
+            $scope.contactHub.currentSalesChannels = $scope.myQuestions[indexQuestion].answers[indexAnswer].text;
+            $scope.createContact();
+
             $scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected =
                 !$scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected;
+
             // .questionState is falsey because user has yet to click on an answer
             if (questionState !== 'answered') {
                 $scope.myQuestions[indexQuestion].selectedAnswer = indexAnswer;
@@ -82,7 +92,6 @@
         };
 
         $scope.selectContinue = function () {
-            console.log("jha - activeQuestion = " + $scope.activeQuestion);
             return $scope.activeQuestion += 1;
         };
 
@@ -123,11 +132,10 @@
             var email = encodeURIComponent(data.email);
             var number = encodeURIComponent(data.number);
             var message = encodeURIComponent(data.message);
-            console.log("jha - query string = ");
-            console.log('php/hubspot1.php?action=' + action + 'name=' + name + '&email='
-                + email + '&number=' + number + '&message=' + message);
+            var currentSalesChannels = encodeURIComponent(data.currentSalesChannels);
+
             return $http.get('php/hubspot1.php?action=' + action + '&name=' + name + '&email='
-                + email + '&number=' + number + '&message=' + message);
+                + email + '&number=' + number + '&message=' + message + '&current-selling-channels=' + currentSalesChannels);
         };
 
 

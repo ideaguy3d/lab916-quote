@@ -35,7 +35,7 @@
 
 <body id="page-top" data-ng-app="quote">
 
-<!-- Navigation -->
+<!-- Navigation
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
     <div class="container">
         <a href="http://lab916.wpengine.com/mock10" class="navbar-brand js-scroll-trigger">
@@ -47,7 +47,7 @@
             Menu
         </button>
 
-        <!-- 2 links on right -->
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -61,14 +61,14 @@
         </div>
     </div>
 </nav>
+-->
 
 <!-- Hero Landing Area Masthead -->
 <header class="masthead" style="background-image: url('img/agency/backgrounds/bg-header.jpg');">
     <div class="container h-100">
         <div class="row h-100">
             <div class="col-12 my-auto text-center text-white">
-                <img class="masthead-img img-fluid mb-3" src="img/lab916-logo.png" alt="lab 916">
-                <div class="masthead-title">Free Lab916 Quote</div>
+                <div class="masthead-title">Free Quote</div>
                 <hr class="colored">
                 <div class="masthead-subtitle">Animated interactive questionnaire</div>
             </div>
@@ -95,15 +95,16 @@
                          ng-repeat="question in myQuestions"></div>
                 </div>
 
-                <!-- 1) Intro Slide: -->
+                <!-- 1) Intro Slide (will go to next slide imm! after clicking 1 of the options):
                 <div class="intro {{ (activeQuestion > -1) ? 'inactive' : 'active' }}">
-                    <h2>Online retailer sites of interest:</h2>
+                    <h4>Online retailer sites of interest:</h4>
                     <p>(select one or more)</p>
                     <button class="btn btn-warning" ng-click="activeQuestion = 0">Amazon</button>
                     <button class="btn btn-success" ng-click="activeQuestion = 0">Corporate Site</button>
                     <button class="btn btn-info" ng-click="activeQuestion = 0">Walmart</button>
                     <button class="btn btn-primary" ng-click="activeQuestion = 0">Other Retailer</button>
                 </div>
+                -->
 
                 <!-- 2) looped Questions with inner looped Answers:  -->
                 <div ng-repeat="question in myQuestions" class="question
@@ -111,7 +112,7 @@
                         {{ $index === activeQuestion ? 'active' : 'inactive' }}">
 
                     <!-- The Question -->
-                    <p class="txt">{{ question.question }}</p>
+                    <h4 class="txt">{{ question.question }}</h4>
 
                     <!-- Inner Loop Begins: -->
                     <div class="ans" ng-class="{
