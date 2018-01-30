@@ -1,46 +1,109 @@
 [
   {
     "question": "Where are you currently selling?",
+    "shortenedQuestion": "Currently Selling",
     "answers": [
-      {"id": 0, "text": "Amazon Seller Central", "optionIsSelected": false},
-      {"id": 1, "text": "Amazon Vendor Central", "optionIsSelected": false},
-      {"id": 2, "text": "Website", "optionIsSelected": false},
-      {"id": 3, "text": "Other", "optionIsSelected": false}
+      {
+        "id": 0,
+        "text": "Amazon Seller Central",
+        "optionIsSelected": false
+      },
+      {
+        "id": 1,
+        "text": "Amazon Vendor Central",
+        "optionIsSelected": false
+      },
+      {
+        "id": 2,
+        "text": "Website",
+        "optionIsSelected": false
+      },
+      {
+        "id": 3,
+        "text": "Amazon Vendor Express",
+        "optionIsSelected": false
+      },
+      {
+        "id": 4,
+        "text": "other",
+        "optionIsSelected": false
+      }
     ],
     "correct": 0,
     "feedback": "Lab916 are specialist in this service"
   },
   {
-    "question": "Services Required?",
+    "question": "What are some details about your Company?",
+    "shortenedQuestion": "Company Snapshot",
     "answers": [
-      {"id": 0, "text": "Amazon marketing", "optionIsSelected": false},
-      {"id": 1, "text": "Essential Content", "optionIsSelected": false},
-      {"id": 2, "text": "Enhanced Content", "optionIsSelected": false},
-      {"id": 3, "text": "Other Services Required", "optionIsSelected": false}
+      {
+        "id": 0,
+        "text": "Amazon Seller Central",
+        "optionIsSelected": false
+      },
+      {
+        "id": 1,
+        "text": "Amazon Vendor Central",
+        "optionIsSelected": false
+      },
+      {
+        "id": 2,
+        "text": "Website",
+        "optionIsSelected": false
+      },
+      {
+        "id": 3,
+        "text": "Other",
+        "optionIsSelected": false
+      }
     ],
     "correct": 0,
     "feedback": "Lab916 are specialist in this service"
   },
   {
-    "question" : "Languages?",
-    "answers"  : [
-      {"id"  : 0, "text" : "Hello (English)", "optionIsSelected": false},
-      {"id"  : 1, "text" : "Hallo (German)", "optionIsSelected": false},
-      {"id"  : 2, "text" : "Bonjour (French)", "optionIsSelected": false},
-      {"id"  : 3, "text" : "Hola (Spanish)", "optionIsSelected": false},
-      {"id"  : 4, "text" : "Ciao (Italian)", "optionIsSelected": false},
-      {"id"  : 5, "text" : "Ellohay (Other)", "optionIsSelected": false}
+    "question": "What are the Goals you have for Amazon?",
+    "shortenedQuestion": "Amazon Goals",
+    "answers": [
+      {
+        "id": 0,
+        "text": "Estimated Yearly Gross Sales All Channels",
+        "optionIsSelected": false
+      },
+      {
+        "id": 1,
+        "text": "Estimate Monthly Gross Sales on Amazon",
+        "optionIsSelected": false
+      },
+      {
+        "id": 2,
+        "text": "Number of products",
+        "optionIsSelected": false
+      },
+      {
+        "id": 3,
+        "text": "Annual marketing budget for Company",
+        "optionIsSelected": false
+      }
     ],
-    "correct"  : 4,
-    "feedback" : "Lab916 are specialist in this service"
+    "correct": 0,
+    "feedback": "Lab916 are specialist in this service"
   },
   {
-    "question" : "This will be a submit form",
-    "answers"  : [
-      {"id"  : 0, "text" : "Cool :)", "optionIsSelected": false},
-      {"id"  : 1, "text" : "Awesome ^_^", "optionIsSelected": false}
+    "question": "This will be a submit form",
+    "shortenedQuestion": "Send Form",
+    "answers": [
+      {
+        "id": 0,
+        "text": "Cool :)",
+        "optionIsSelected": false
+      },
+      {
+        "id": 1,
+        "text": "Awesome ^_^",
+        "optionIsSelected": false
+      }
     ],
-    "correct"  : 0,
-    "feedback" : "Lab916 are specialist in this service"
+    "correct": 0,
+    "feedback": "Lab916 are specialist in this service"
   }
 ]

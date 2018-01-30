@@ -37,6 +37,11 @@
             currentSalesChannels: ""
         };
 
+        $scope.changeActiveQuestion = function(idx){
+               $scope.activeQuestion = idx;
+               console.log("jha - activeQuestion should be changed...");
+        };
+
         $scope.hubspotReq = function () {
             console.log("jha - contactHub Object = ");
             console.log($scope.contactHub);

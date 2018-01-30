@@ -16,22 +16,36 @@
 #lab916-quote #lab916-progress-container {
     position: absolute;
     top: 160px;
-    left: 22px;
+    left: 0;
+    text-align: left;
 }
 
-#lab916-quote #lab916-progress-container div {
-    position: relative;
-    display: block;
+.L9-mt20 {
+    margin-top: 20px;
+}
+
+#lab916-quote #lab916-progress-container .L9-circle {
+    display: inline-block;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background-color: #ffcd0e;
-    margin-top: 22px;
     transition: background-color 1s;
+}
+
+.L9-indicator-row {
     cursor: pointer;
 }
 
-#lab916-quote #lab916-progress-container div.on {
+#lab916-quote #lab916-progress-container .L9-circle-txt {
+    display: inline-block;
+    position: relative;
+    bottom: 8px;
+    font-size: 14px;
+}
+
+
+#lab916-quote #lab916-progress-container .L9-circle.on {
     background-color: yellow;
 }
 

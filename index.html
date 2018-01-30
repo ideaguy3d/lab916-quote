@@ -33,7 +33,7 @@
 </head>
 
 
-<body id="page-top" data-ng-app="quote">
+<body id="page-top" data-ng-app="quote" style="overflow: hidden">
 
 <!-- Navigation
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
@@ -82,17 +82,28 @@
 </header>
 
 <!-- Get A Quote Section -->
-<section class="page-section" id="about">
+<section class="page-section">
     <div class="container-fluid">
         <div class="wow flipInY text-center">
-            <h1>Get A Quote</h1>
+            <h1 id="about">Get A Quote</h1>
+
             <!---------------------------------->
             <!-- Animated Quote Questionnaire -->
             <!---------------------------------->
             <section id="lab916-quote" data-ng-controller="QuoteCtrl as quote">
+
+                <!-- The 'Side Nav' for the animated questionnaire -->
                 <div id="lab916-progress-container">
-                    <div class="{{($index === activeQuestion) ? 'on' : 'off'}}"
-                         ng-repeat="question in myQuestions"></div>
+                    <div class="L9-indicator-row L9-mt20" ng-click="changeActiveQuestion($index)"
+                            ng-repeat="question in myQuestions">
+                        <div class="L9-circle {{($index === activeQuestion) ? 'on' : 'off'}}"></div>
+                        <div class="L9-circle-txt"><span>{{question.shortenedQuestion}}</span></div>
+                    </div>
+
+                    <div class="L9-indicator-row L9-mt20" ng-click="changeActiveQuestion(myQuestions.length)">
+                        <div class="L9-circle {{(myQuestions.length === activeQuestion) ? 'on' : 'off'}}"></div>
+                        <div class="L9-circle-txt"><span>Send</span></div>
+                    </div>
                 </div>
 
                 <!-- 1) Intro Slide (will go to next slide imm! after clicking 1 of the options):
@@ -122,6 +133,7 @@
                          ng-click="selectAnswer($parent.$index, $index)"
                          ng-repeat="answer in question.answers">
                         {{ answer.text }}
+                        <textarea ng-show="answer.text === 'other'"></textarea>
                     </div>
 
                     <!-- feedback: -->
@@ -133,7 +145,7 @@
                 </div>
 
                 <!-- 3) Contact Form: -->
-                <div id="contact" ng-class="{'active' : (activeQuestion === 3) }">
+                <div id="contact" ng-class="{'active' : (activeQuestion === myQuestions.length) }">
                     <div class="text-center">
                         <p class="text-center">Please tell us about you and we will help you.</p>
                     </div>
@@ -278,7 +290,6 @@
 
 <!-- Custom scripts for this theme -->
 <script src="js/lab916.js"></script>
-<!--<script src="js/mixitup-config.js"></script>-->
 
 <!-- This is the Actual "Get a quote" ng code for lab916 -->
 <script src="app.quote.js"></script>
