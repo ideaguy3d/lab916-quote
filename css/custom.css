@@ -15,7 +15,7 @@
 
 #lab916-quote #lab916-progress-container {
     position: absolute;
-    top: 160px;
+    top: 110px;
     left: 0;
     text-align: left;
 }
@@ -29,8 +29,9 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #ffcd0e;
-    transition: background-color 1s;
+    border: 1px solid #ffda0c;
+    background-color: #FFFFFF;
+    transition: all 500ms linear;
 }
 
 .L9-indicator-row {
@@ -44,9 +45,9 @@
     font-size: 14px;
 }
 
-
 #lab916-quote #lab916-progress-container .L9-circle.on {
-    background-color: yellow;
+    background-color: #ffda0c;
+    transition: all 500ms linear;
 }
 
 /* - Intro slide - */
@@ -88,25 +89,26 @@
     position: absolute;
     top: 1400px;
     left: 14%;
-    width: 890px;
+    width: 80%;
     min-height: 450px;
     height: 100%;
-    background: linear-gradient(0deg, #434343, #575757);
+    /* background: linear-gradient(0deg, #434343, #575757); */
     padding: 12px;
 }
 
 #lab916-quote .question .ans {
-    height: 278px;
     cursor: pointer;
     transition: all 0.1s linear;
     margin-top: 12px;
+    background-color: rgb(246, 249, 252);
 }
 
-#lab916-quote .question .ans-h2 {
-    height: 200px;
-    cursor: pointer;
-    transition: all 0.1s linear;
-    margin-top: 12px;
+.height-short {
+    height: 240px;
+}
+
+.height-medium {
+    height: 278px;
 }
 
 #lab916-quote .question .ans-old {
@@ -121,9 +123,8 @@
 }
 
 #lab916-quote .question .ans.selected {
-    border: solid thick #ffcd0e;
-    background-color: #cccccc;
-    box-shadow: 2px 4px 50px 10px rgba(0,0,0, 0.3);
+    border: 2px solid #ffcd0e;
+    box-shadow: 0 4px 10px 5px rgba(0,0,0, 0.2);
     transition: all 0.1s linear;
 }
 
@@ -144,6 +145,14 @@
     transition: opacity 1.5s, margin-top 1.5s;
     opacity: 1;
     margin-top: 10px;
+}
+
+.feedback {
+    visibility: visible;
+    transition: opacity 1.5s, margin-top 1.5s;
+    opacity: 1;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 #lab916-quote .active {

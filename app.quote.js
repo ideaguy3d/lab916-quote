@@ -30,15 +30,15 @@
 
         // contactHub is the real HubSpot req obj
         $scope.contactHub = {
-            email: "test"+Math.random()+"@lab916.com",
-            name: "user"+Math.random(),
-            message: "id = "+Math.random(),
+            email: "test" + Math.random() + "@lab916.com",
+            name: "user" + Math.random(),
+            message: "id = " + Math.random(),
             number: "916-123-4567",
             currentSalesChannels: ""
         };
 
-        $scope.changeActiveQuestion = function(idx){
-               $scope.activeQuestion = idx;
+        $scope.changeActiveQuestion = function (idx) {
+            $scope.activeQuestion = idx;
         };
 
         $scope.hubspotReq = function () {
@@ -63,10 +63,11 @@
 
         $scope.selectAnswer = function (indexQuestion, indexAnswer) {
             var questionState = $scope.myQuestions[indexQuestion].questionState;
+            console.log("indexQuestion = "+indexQuestion+", questionState = ");
+            console.log(questionState);
 
-            console.log("jha - The user selected = "+$scope.myQuestions[indexQuestion].answers[indexAnswer].text);
             $scope.contactHub.currentSalesChannels = $scope.myQuestions[indexQuestion].answers[indexAnswer].text;
-            $scope.createContact();
+            // $scope.createContact();
 
             $scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected =
                 !$scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected;
@@ -86,8 +87,6 @@
                 // now that user has clicked on an answer I now set .questionState
                 $scope.myQuestions[indexQuestion].questionState = 'answered';
             }
-
-            $scope.percentScore = (100 * ($scope.score / $scope.totalQuestions)).toFixed(2);
         };
 
         $scope.isSelected = function (qIndex, aIndex) {
