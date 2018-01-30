@@ -56,8 +56,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="http://lab916.wpengine.com/category/case-studies/" class="nav-link js-scroll-trigger">Case
-                        Studies</a>
+                    <a href="http://lab916.wpengine.com/category/case-studies/" class="nav-link js-scroll-trigger">
+                        Case Studies
+                    </a>
                 </li>
             </ul>
         </div>
@@ -128,6 +129,21 @@
                     <div class="row">
                         <!-- ng-repeat inner loop -->
                         <div class="col-md-3" ng-repeat="answer in question.answers">
+                            <!-- Extra Short Height Cards -->
+                            <div ng-if="question.height === 'extra short'">
+                                <div class="card ans height-extra-short"
+                                     ng-class="{'selected': myQuestions[$parent.$parent.$index].answers[$parent.$index].optionIsSelected}"
+                                     ng-click="selectAnswer($parent.$parent.$index, $parent.$index)">
+                                    <div class="card-body">
+                                        <p><i class="fa fa-camera fa-2x"></i></p>
+                                        <p class="L9-mb-0">{{ answer.text }}</p>
+                                        <!-- Forms -->
+                                        <textarea ng-show="answer.type === 'textarea'"></textarea>
+                                        <input type="text" ng-show="answer.type === 'input text'">
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Short Height Cards -->
                             <div ng-if="question.height === 'short'">
                                 <div class="card ans height-short"
@@ -144,7 +160,7 @@
                             </div>
 
                             <!-- Medium Height Cards -->
-                            <div ng-if="question.height !== 'short'">
+                            <div ng-if="question.height === 'medium'">
                                 <div class="card ans height-medium"
                                      ng-class="{'selected': myQuestions[$parent.$parent.$index].answers[$parent.$index].optionIsSelected}"
                                      ng-click="selectAnswer($parent.$parent.$index, $parent.$index)">
@@ -186,10 +202,9 @@
                             <label for="lname">Email</label>
                             <input type="text" id="email" name="lastname" placeholder="Email">
 
+                            <label for="subject">Message</label>
                             <textarea id="subject" name="subject" placeholder="Write something.."
-                                      style="height:200px"></textarea>
-
-                            <input type="submit" value="Submit">
+                                      style="height:150px"></textarea>
                         </form>
                     </div>
                 </div>

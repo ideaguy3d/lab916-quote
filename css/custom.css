@@ -5,12 +5,16 @@
 ---- START: Quote Style Rules ----
 */
 
+.L9-mb-0 {
+    margin-bottom: 0 !important;
+}
+
 #lab916-quote {
     position: relative;
     display: block;
     overflow: hidden;
     margin: auto;
-    height: 80vh;
+    height: 90vh;
 }
 
 #lab916-quote #lab916-progress-container {
@@ -103,8 +107,12 @@
     background-color: rgb(246, 249, 252);
 }
 
+.height-extra-short {
+    height: 134px;
+}
+
 .height-short {
-    height: 240px;
+    height: 190px;
 }
 
 .height-medium {
@@ -165,7 +173,7 @@
 
 /* Style inputs with type="text", select elements and textareas */
 input[type=text], select {
-    width: 35%;
+    width: 95%;
     padding: 2px; /* Some padding */
     border: 1px solid #ccc; /* Gray border */
     border-radius: 4px; /* Rounded borders */
