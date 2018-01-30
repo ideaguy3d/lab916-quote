@@ -8,8 +8,6 @@
 
 // header ('Content-type: application/json');
 // echo ")]}'\n";
-// echo 'it worked!! email = '.$_GET['email'].' | name = '.$_GET['name'].' | number = '.$_GET['number'].' | message/lastname = '.$_GET['message'];
-
 
 $arr = array(
     'properties' => array(

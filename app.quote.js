@@ -23,59 +23,81 @@
         $scope.activeQuestionAnswered = 0;
         $scope.percentScore = 0;
         $scope.optionIsSelected = false;
-        $scope.status = "Wired up (:";
-        // contact is for test purposes
-        $scope.contact = {};
-        $scope.testVal = 0;
 
         // contactHub is the real HubSpot req obj
-        $scope.contactHub = {
+        $scope.contactHubObject = {
             email: "test" + Math.random() + "@lab916.com",
             name: "user" + Math.random(),
+            company: "",
             message: "id = " + Math.random(),
             number: "916-123-4567",
-            currentSalesChannels: ""
+            currentSalesChannels: [],
+            currentlySellingOther: "",
+            estimatedYearlySalesAllChannels: "",
+            estimatedMonthlySalesAmazon: "",
+            annualMarketingBudgetCompany: "",
+            monthlyMarketingBudgetAmazon: "",
+            amazonExperience: "",
+            amazonBusinessGoals: ""
         };
 
         $scope.changeActiveQuestion = function (idx) {
             $scope.activeQuestion = idx;
         };
 
-        $scope.hubspotReq = function () {
-            console.log("jha - contactHub Object = ");
-            console.log($scope.contactHub);
-        };
-
         var doContact = false;
-        $scope.createContact = function () {
+
+        function createHubspotContact(shQuestion, answerObj) {
+            if (shQuestion === "Currently Selling") {
+                if (answerObj.optionIsSelected && answerObj.text !== "other") {
+                    $scope.contactHubObject.currentSalesChannels[answerObj.id] = answerObj.text;
+                } else {
+                    if ($scope.contactHubObject.currentSalesChannels[answerObj.id] && answerObj.text !== "other") {
+                        delete $scope.contactHubObject.currentSalesChannels[answerObj.id];
+                    }
+                }
+                console.log("jha - $scope.contactHubObject.currentSalesChannels = ");
+                console.log($scope.contactHubObject.currentSalesChannels);
+            }
+            // manage Company Snapshot slide
+            else if (shQuestion === "Company Snapshot") {
+
+            }
+            // manage Amazon Goals slide
+            else if (shQuestion === "Amazon Goals") {
+
+            }
+            // manage Amazon Services slide
+            else if (shQuestion === "Amazon Services") {
+
+            }
+            // manage Other Question slide
+            else if (shQuestion === "Other Questions") {
+
+            }
+        }
+
+        function makeHubspotRequest() {
             if (doContact) {
                 jDataSer.createHubspotContact($scope.contactHub).then(function (res) {
-                    $scope.testRes = "The response === " + res.data;
                     console.log("jha - res.data =");
                     console.log(res.data);
                 });
             }
-        };
+        }
 
-        $scope.testMe = function () {
-            $scope.testVal++;
-        };
-
+        // sort of like the engine that powers this questionnaire
         $scope.selectAnswer = function (indexQuestion, indexAnswer) {
             var questionState = $scope.myQuestions[indexQuestion].questionState;
-            console.log("indexQuestion = "+indexQuestion+", questionState = ");
-            console.log(questionState);
-
-            $scope.contactHub.currentSalesChannels = $scope.myQuestions[indexQuestion].answers[indexAnswer].text;
-            // $scope.createContact();
 
             $scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected =
                 !$scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected;
 
-            // .questionState is falsey because user has yet to click on an answer
+            // questionState is always going to initially be falsey because user has yet to click on an answer
             if (questionState !== 'answered') {
-                $scope.myQuestions[indexQuestion].selectedAnswer = indexAnswer;
                 var correctAnswer = $scope.myQuestions[indexQuestion].correct;
+
+                $scope.myQuestions[indexQuestion].selectedAnswer = indexAnswer;
                 $scope.myQuestions[indexQuestion].correctAnswer = correctAnswer;
 
                 if (indexAnswer === correctAnswer) {
@@ -84,9 +106,14 @@
                 } else {
                     $scope.myQuestions[indexQuestion].correctness = 'incorrect';
                 }
+
                 // now that user has clicked on an answer I now set .questionState
                 $scope.myQuestions[indexQuestion].questionState = 'answered';
             }
+
+            var sq = $scope.myQuestions[indexQuestion].shortenedQuestion;
+            var ao = $scope.myQuestions[indexQuestion].answers[indexAnswer];
+            createHubspotContact(sq, ao);
         };
 
         $scope.isSelected = function (qIndex, aIndex) {

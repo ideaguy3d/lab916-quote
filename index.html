@@ -152,8 +152,11 @@
                                     <div class="card-body">
                                         <p><i class="fa fa-bus fa-2x"></i></p>
                                         <p>{{ answer.text }}</p>
+
                                         <!-- Forms -->
-                                        <textarea ng-show="answer.type === 'textarea'"></textarea>
+                                        <textarea placeholder="Other channels" ng-model="contactHubObject.currentSalesChannels[4]"
+                                                  ng-show="answer.type === 'textarea' && question.shortenedQuestion === 'Currently Selling'">
+                                        </textarea>
                                         <input type="text" ng-show="answer.type === 'input text'">
                                     </div>
                                 </div>
@@ -184,11 +187,11 @@
                     </div>
                     <div class="L9-form-container">
                         <form>
-                            <label for="fname">First Name</label>
-                            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                            <label for="fname">Name</label>
+                            <input type="text" id="fname" name="firstname" placeholder="Your Name..">
 
-                            <label for="lname">Last Name</label>
-                            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="lastname" placeholder="Your Company..">
 
                             <label for="country">Country</label>
                             <select id="country" name="country">
@@ -199,8 +202,8 @@
                                 <option value="usa">Britain</option>
                             </select>
 
-                            <label for="lname">Email</label>
-                            <input type="text" id="email" name="lastname" placeholder="Email">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" name="email" placeholder="Email">
 
                             <label for="subject">Message</label>
                             <textarea id="subject" name="subject" placeholder="Write something.."
