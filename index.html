@@ -85,7 +85,7 @@
 <section class="page-section">
     <div class="container-fluid">
         <div class="wow flipInY text-center">
-            <h1 id="about">Get A Quote</h1>
+            <h4 id="about">Interactive Quote</h4>
 
             <!---------------------------------->
             <!-- Animated Quote Questionnaire -->
@@ -125,15 +125,35 @@
                     <!-- The Question -->
                     <h4 class="txt">{{ question.question }}</h4>
 
-                    <!-- Inner Loop Begins: -->
-                    <div class="ans" ng-class="{
-                            'selected': myQuestions[$parent.$index].answers[$index].optionIsSelected,
-                            'correct': isCorrect($parent.$index, $index)
-			             }"
-                         ng-click="selectAnswer($parent.$index, $index)"
-                         ng-repeat="answer in question.answers">
-                        {{ answer.text }}
-                        <textarea ng-show="answer.text === 'other'"></textarea>
+                    <div class="row">
+                        <div class="col-md-3" ng-repeat="answer in question.answers">
+                            <div ng-if="question.height === 'short'">
+                                <div class="card ans-h2" ng-class="{
+                                'selected': myQuestions[$parent.$index].answers[$index].optionIsSelected,
+                                'correct': isCorrect($parent.$index, $index)
+			                }"
+                                     ng-click="selectAnswer($parent.$index, $index)">
+                                    <div class="card-body">
+                                        <p>{{ answer.text }}</p>
+                                        <textarea ng-show="answer.type === 'textarea'"></textarea>
+                                        <input type="text" ng-show="answer.type === 'input text'">
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="question.height !== 'short'">
+                                <div class="card ans" ng-class="{
+                                'selected': myQuestions[$parent.$index].answers[$index].optionIsSelected,
+                                'correct': isCorrect($parent.$index, $index)
+			                }"
+                                     ng-click="selectAnswer($parent.$index, $index)">
+                                    <div class="card-body">
+                                        <p>{{ answer.text }}</p>
+                                        <textarea ng-show="answer.type === 'textarea'"></textarea>
+                                        <input type="text" ng-show="answer.type === 'input text'">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- feedback: -->
@@ -149,63 +169,30 @@
                     <div class="text-center">
                         <p class="text-center">Please tell us about you and we will help you.</p>
                     </div>
-                    <div class="row mt-4">
-                        <div class="col-lg-8 mx-auto">
-                            <form name="sentMessage" id="contactForm" ng-submit="hubspotReq()" novalidate>
-                                <!-- Name field -->
-                                <div class="row control-group">
-                                    <div class="form-group col-12 floating-label-form-group controls">
-                                        <label>Name</label>
-                                        <input type="text" class="form-control" placeholder="Name" id="name" required
-                                               ng-model="contactHub.name" data-validation-required-message="Please enter your name.">
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
+                    <div class="L9-form-container">
+                        <form>
+                            <label for="fname">First Name</label>
+                            <input type="text" id="fname" name="firstname" placeholder="Your name..">
 
-                                <!-- Email Field -->
-                                <div class="row control-group">
-                                    <div class="form-group col-12 floating-label-form-group controls">
-                                        <label>Email Address</label>
-                                        <input type="email" class="form-control" placeholder="Email Address" id="email"
-                                               ng-model="contactHub.email" required
-                                               data-validation-required-message="Please enter your email address.">
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
+                            <label for="lname">Last Name</label>
+                            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
 
-                                <!-- Phone Number Field -->
-                                <div class="row control-group">
-                                    <div class="form-group col-12 floating-label-form-group controls">
-                                        <label>Phone Number</label>
-                                        <input type="tel" class="form-control" placeholder="Phone Number" id="phone"
-                                               required data-validation-required-message="Please enter your phone number."
-                                                ng-model="contactHub.phoneNumber">
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
+                            <label for="country">Country</label>
+                            <select id="country" name="country">
+                                <option value="australia">Australia</option>
+                                <option value="canada">Canada</option>
+                                <option value="usa">USA</option>
+                                <option value="usa">China</option>
+                                <option value="usa">Britain</option>
+                            </select>
 
-                                <!-- Message Field -->
-                                <div class="row control-group">
-                                    <div class="form-group col-12 floating-label-form-group controls">
-                                        <label>Message</label>
-                                        <textarea rows="5" class="form-control" placeholder="Message" id="message"
-                                                  required data-validation-required-message="Message Required."
-                                                  ng-model="contactHub.message"></textarea>
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
+                            <label for="lname">Email</label>
+                            <input type="text" id="email" name="lastname" placeholder="Email">
 
-                                <!-- Send Button -->
-                                <div class="row">
-                                    <div class="form-group col-12">
-                                        <button type="submit" class="btn btn-secondary btn-lg">Send</button>
-                                    </div>
-                                </div>
+                            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
 
-                                <!-- AJAX callback div -->
-                                <div id="success"></div>
-                            </form>
-                        </div>
+                            <input type="submit" value="Submit">
+                        </form>
                     </div>
                 </div>
             </section>

@@ -39,7 +39,6 @@
 
         $scope.changeActiveQuestion = function(idx){
                $scope.activeQuestion = idx;
-               console.log("jha - activeQuestion should be changed...");
         };
 
         $scope.hubspotReq = function () {
@@ -47,12 +46,15 @@
             console.log($scope.contactHub);
         };
 
+        var doContact = false;
         $scope.createContact = function () {
-            jDataSer.createHubspotContact($scope.contactHub).then(function (res) {
-                $scope.testRes = "The response === " + res.data;
-                console.log("jha - res.data =");
-                console.log(res.data);
-            });
+            if (doContact) {
+                jDataSer.createHubspotContact($scope.contactHub).then(function (res) {
+                    $scope.testRes = "The response === " + res.data;
+                    console.log("jha - res.data =");
+                    console.log(res.data);
+                });
+            }
         };
 
         $scope.testMe = function () {

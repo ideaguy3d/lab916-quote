@@ -96,9 +96,22 @@
 }
 
 #lab916-quote .question .ans {
+    height: 278px;
+    cursor: pointer;
+    transition: all 0.1s linear;
+    margin-top: 12px;
+}
+
+#lab916-quote .question .ans-h2 {
+    height: 200px;
+    cursor: pointer;
+    transition: all 0.1s linear;
+    margin-top: 12px;
+}
+
+#lab916-quote .question .ans-old {
     display: inline-block;
     background-color: whitesmoke;
-    padding: 8px;
     width: 200px;
     height: 200px;
     position: relative;
@@ -139,6 +152,44 @@
 
 #lab916-quote #contact.active {
     top: 10px !important;
+}
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], select {
+    width: 35%;
+    padding: 2px; /* Some padding */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin: 4px 4px;
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+textarea {
+    width: 100%;
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+    background-color: #434343;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 200ms linear;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    transition: all 200ms linear;
+}
+
+.L9-form-container {
+    padding: 24px;
+    text-align: left;
 }
 
 /*
