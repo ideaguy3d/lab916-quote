@@ -112,8 +112,13 @@
 
                     <!-- Continue Button -->
                     <div class="feedback">
-                        <div class="btn btn-sm btn-info" ng-click="selectContinue()">
+                        <div class="btn btn-sm btn-info" ng-click="selectContinue()"
+                             ng-show="activeQuestion !== myQuestions.length">
                             <strong>Continue</strong>
+                        </div>
+                        <div class="btn btn-sm btn-warning" ng-click="makeHubspotRequest()"
+                             ng-show="activeQuestion === myQuestions.length">
+                            <strong>Send</strong>
                         </div>
                     </div>
                 </div>
@@ -157,6 +162,7 @@
                                         <textarea placeholder="Other channels" ng-model="contactHubObject.currentSalesChannels[4]"
                                                   ng-show="answer.type === 'textarea' && question.shortenedQuestion === 'Currently Selling'">
                                         </textarea>
+
                                         <input type="text" ng-show="answer.type === 'input text'">
                                     </div>
                                 </div>
@@ -170,8 +176,10 @@
                                     <div class="card-body">
                                         <p>{{ answer.text }}</p>
                                         <!-- Forms -->
-                                        <textarea ng-show="answer.type === 'textarea'"></textarea>
-                                        <input type="text" ng-show="answer.type === 'input text'">
+                                        <div ng-show="question.shortenedQuestion === 'Company Snapshot'">
+                                            <input ng-model="contactHubObject.companySnapshot[answer.id]"
+                                                   type="text" ng-show="answer.type === 'input text'" placeholder="Amount">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

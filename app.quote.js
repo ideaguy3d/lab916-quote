@@ -29,10 +29,10 @@
             email: "test" + Math.random() + "@lab916.com",
             name: "user" + Math.random(),
             company: "",
-            message: "id = " + Math.random(),
+            message: "message " + Math.random(),
             number: "916-123-4567",
             currentSalesChannels: [],
-            currentlySellingOther: "",
+            companySnapshot: [],
             estimatedYearlySalesAllChannels: "",
             estimatedMonthlySalesAmazon: "",
             annualMarketingBudgetCompany: "",
@@ -41,11 +41,10 @@
             amazonBusinessGoals: ""
         };
 
+        //-- used in the side navigation:
         $scope.changeActiveQuestion = function (idx) {
             $scope.activeQuestion = idx;
         };
-
-        var doContact = false;
 
         function createHubspotContact(shQuestion, answerObj) {
             if (shQuestion === "Currently Selling") {
@@ -61,7 +60,8 @@
             }
             // manage Company Snapshot slide
             else if (shQuestion === "Company Snapshot") {
-
+                console.log("jha - $scope.contactHubObject.companySnapshot =");
+                console.log($scope.contactHubObject.companySnapshot);
             }
             // manage Amazon Goals slide
             else if (shQuestion === "Amazon Goals") {
@@ -77,19 +77,18 @@
             }
         }
 
-        function makeHubspotRequest() {
-            if (doContact) {
-                jDataSer.createHubspotContact($scope.contactHub).then(function (res) {
-                    console.log("jha - res.data =");
-                    console.log(res.data);
-                });
-            }
-        }
+        $scope.makeHubspotRequest = function () {
+            jDataSer.createHubspotContact($scope.contactHubObject).then(function (res) {
+                console.log("jha - res.data =");
+                console.log(res.data);
+            });
+        };
 
         // sort of like the engine that powers this questionnaire
         $scope.selectAnswer = function (indexQuestion, indexAnswer) {
             var questionState = $scope.myQuestions[indexQuestion].questionState;
 
+            //-- this will style the answer card to indicate it has been selected:
             $scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected =
                 !$scope.myQuestions[indexQuestion].answers[indexAnswer].optionIsSelected;
 
@@ -160,15 +159,33 @@
         };
 
         var createHubspotContact = function (data) {
-            var action = encodeURIComponent('createContact');
-            var name = encodeURIComponent(data.name);
             var email = encodeURIComponent(data.email);
-            var number = encodeURIComponent(data.number);
+            var name = encodeURIComponent(data.name);
+            var company = encodeURIComponent(data.company);
             var message = encodeURIComponent(data.message);
-            var currentSalesChannels = encodeURIComponent(data.currentSalesChannels);
+            var number = encodeURIComponent(data.number);
+            // each answer has an id, the index of the array is the answers id.
+            var estimatedYearlySalesAllChannels = encodeURIComponent(data.companySnapshot[0]);
+            var estimatedMonthlySalesAmazon = encodeURIComponent(data.companySnapshot[1]);
+            var annualMarketingBudget = encodeURIComponent(data.companySnapshot[2]);
+            var monthlyMarketingBudgetAmazon = encodeURIComponent(data.companySnapshot[3]);
 
-            return $http.get('php/hubspot1.php?action=' + action + '&name=' + name + '&email='
-                + email + '&number=' + number + '&message=' + message + '&current-selling-channels=' + currentSalesChannels);
+            // current sales channels is an array, so convert to a str
+            var currentSalesChannelsStr = "";
+            data.currentSalesChannels.forEach(function (value) {
+                currentSalesChannelsStr += (value + " __ ");
+            });
+            var currentSalesChannels = encodeURIComponent(currentSalesChannelsStr);
+
+            var action = encodeURIComponent('createContact');
+            return $http.get('php/hubspot1.php?action=' + action + '&name=' + name + '&email=' + email +
+                '&number=' + number + '&message=' + message +
+                '&current-selling-channels=' + currentSalesChannels +
+                '&estimated-yearly-sales-all-channels=' + estimatedYearlySalesAllChannels +
+                '&estimated-monthly-sales-amazon=' + estimatedMonthlySalesAmazon +
+                '&annual-marketing-budget-for-company=' + annualMarketingBudget +
+                '&monthly-budget-on-amazon=' + monthlyMarketingBudgetAmazon
+            );
         };
 
 

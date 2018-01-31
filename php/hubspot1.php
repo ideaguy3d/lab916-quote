@@ -30,6 +30,23 @@ $arr = array(
         array(
             'property' => 'current_selling_channels',
             'value' => $_GET['current-selling-channels']
+        ),
+        // Company Snapshot slide
+        array(
+            'property' => 'estimated_yearly_sales_all_channels',
+            'value' => $_GET['estimated-yearly-sales-all-channels']
+        ),
+        array(
+            'property' => 'estimated_monthly_sales_amazon',
+            'value' => $_GET['estimated-monthly-sales-amazon']
+        ),
+        array(
+            'property' => 'annual_marketing_budget_for_company',
+            'value' => $_GET['annual-marketing-budget-for-company']
+        ),
+        array(
+            'property' => 'monthly_budget_on_amazon',
+            'value' => $_GET['monthly-budget-on-amazon']
         )
     )
 );
