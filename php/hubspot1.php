@@ -47,6 +47,18 @@ $arr = array(
         array(
             'property' => 'monthly_budget_on_amazon',
             'value' => $_GET['monthly-budget-on-amazon']
+        ),
+        array(
+            'property' => 'summary_of_experiences',
+            'value' => $_GET['summary-of-experiences']
+        ),
+        array(
+            'property' => 'amazon_goals',
+            'value' => $_GET['amazon-goals']
+        ),
+        array(
+            'property' => 'amazon_services',
+            'value' => $_GET['amazon-services']
         )
     )
 );

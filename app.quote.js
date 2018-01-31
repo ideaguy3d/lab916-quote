@@ -33,12 +33,9 @@
             number: "916-123-4567",
             currentSalesChannels: [],
             companySnapshot: [],
-            estimatedYearlySalesAllChannels: "",
-            estimatedMonthlySalesAmazon: "",
-            annualMarketingBudgetCompany: "",
-            monthlyMarketingBudgetAmazon: "",
-            amazonExperience: "",
-            amazonBusinessGoals: ""
+            amazonGoals: [],
+            amazonServices: [],
+            otherQuestions: []
         };
 
         //-- used in the side navigation:
@@ -65,11 +62,20 @@
             }
             // manage Amazon Goals slide
             else if (shQuestion === "Amazon Goals") {
-
+                console.log("jha - $scope.contactHubObject.amazonGoals =");
+                console.log($scope.contactHubObject.amazonGoals);
             }
             // manage Amazon Services slide
             else if (shQuestion === "Amazon Services") {
-
+                if (answerObj.optionIsSelected && answerObj.text !== "other") {
+                    $scope.contactHubObject.amazonServices[answerObj.id] = answerObj.text;
+                } else {
+                    if ($scope.contactHubObject.amazonServices[answerObj.id] && answerObj.text !== "other") {
+                        delete $scope.contactHubObject.amazonServices[answerObj.id];
+                    }
+                }
+                console.log("jha - $scope.contactHubObject.amazonServices =");
+                console.log($scope.contactHubObject.amazonServices);
             }
             // manage Other Question slide
             else if (shQuestion === "Other Questions") {
@@ -169,14 +175,25 @@
             var estimatedMonthlySalesAmazon = encodeURIComponent(data.companySnapshot[1]);
             var annualMarketingBudget = encodeURIComponent(data.companySnapshot[2]);
             var monthlyMarketingBudgetAmazon = encodeURIComponent(data.companySnapshot[3]);
+            var summaryExperience = encodeURIComponent(data.amazonGoals[0]);
+            var amazonGoals = encodeURIComponent(data.amazonGoals[1]);
 
-            // current sales channels is an array, so convert to a str
+
+            //-- current sales channels is an array, so convert to a str:
             var currentSalesChannelsStr = "";
             data.currentSalesChannels.forEach(function (value) {
                 currentSalesChannelsStr += (value + " __ ");
             });
             var currentSalesChannels = encodeURIComponent(currentSalesChannelsStr);
 
+            //-- Amazon Services also has to be converted to a string:
+            var amazonServicesStr = "";
+            data.amazonServices.forEach(function (value) {
+                amazonServicesStr += (value+" __ ");
+            });
+            var amazonServices = encodeURIComponent(amazonServicesStr);
+
+            //-- send the request:
             var action = encodeURIComponent('createContact');
             return $http.get('php/hubspot1.php?action=' + action + '&name=' + name + '&email=' + email +
                 '&number=' + number + '&message=' + message +
@@ -184,7 +201,9 @@
                 '&estimated-yearly-sales-all-channels=' + estimatedYearlySalesAllChannels +
                 '&estimated-monthly-sales-amazon=' + estimatedMonthlySalesAmazon +
                 '&annual-marketing-budget-for-company=' + annualMarketingBudget +
-                '&monthly-budget-on-amazon=' + monthlyMarketingBudgetAmazon
+                '&monthly-budget-on-amazon=' + monthlyMarketingBudgetAmazon +
+                '&summary-of-experiences=' + summaryExperience + '&amazon-goals=' + amazonGoals +
+                '&amazon-services=' + amazonServices
             );
         };
 

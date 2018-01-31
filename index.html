@@ -144,7 +144,8 @@
                                         <p class="L9-mb-0">{{ answer.text }}</p>
                                         <!-- Forms -->
                                         <textarea ng-show="answer.type === 'textarea'"></textarea>
-                                        <input type="text" ng-show="answer.type === 'input text'">
+                                        <input type="text" ng-model="contactHubObject.amazonServices[answer.id]"
+                                               ng-show="answer.type === 'input text' && question.shortenedQuestion === 'Amazon Services'">
                                     </div>
                                 </div>
                             </div>
@@ -178,8 +179,16 @@
                                         <!-- Forms -->
                                         <div ng-show="question.shortenedQuestion === 'Company Snapshot'">
                                             <input ng-model="contactHubObject.companySnapshot[answer.id]"
-                                                   type="text" ng-show="answer.type === 'input text'" placeholder="Amount">
+                                                   type="text" ng-show="answer.type === 'input text'"
+                                                   placeholder="Amount">
                                         </div>
+                                        <div ng-show="question.shortenedQuestion === 'Amazon Goals'">
+                                            <textarea placeholder="Amazon Goals"
+                                                      ng-model="contactHubObject.amazonGoals[answer.id]">
+                                            </textarea>
+                                        </div>
+                                        <!--<textarea ng-show="answer.type === 'textarea'"></textarea>-->
+                                        <!--<input type="text" ng-show="answer.type === 'input text'">-->
                                     </div>
                                 </div>
                             </div>
