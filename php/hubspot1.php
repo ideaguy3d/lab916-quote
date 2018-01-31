@@ -16,11 +16,11 @@ $arr = array(
             'value' => $_GET['email']
         ),
         array(
-            'property' => 'firstname',
-            'value' => $_GET['name']
+            'property' => 'name',
+            'value' => $_GET['firstname']
         ),
         array(
-            'property' => 'lastname',
+            'property' => 'message',
             'value' => $_GET['message']
         ),
         array(
@@ -59,6 +59,18 @@ $arr = array(
         array(
             'property' => 'amazon_services',
             'value' => $_GET['amazon-services']
+        ),
+        array(
+            'property' => 'website',
+            'value' => $_GET['website']
+        ),
+        array(
+            'property' => 'number_of_products',
+            'value' => $_GET['number-of-products']
+        ),
+        array(
+            'property' => 'number_of_products_on_amazon',
+            'value' => $_GET['number-of-products-on-amazon']
         )
     )
 );

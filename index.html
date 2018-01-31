@@ -124,7 +124,7 @@
                 </div>
 
                 <!-- ng-repeat Looped Questions with inner looped Answers:  -->
-                <div ng-repeat="question in myQuestions" class="question
+                <div ng-repeat="question in myQuestions" ng-hide="userHasSent" class="question
                         {{ question.questionState === 'answered' ? 'answered' : 'unanswered' }}
                         {{ $index === activeQuestion ? 'active' : 'inactive' }}">
 
@@ -160,7 +160,8 @@
                                         <p>{{ answer.text }}</p>
 
                                         <!-- Forms -->
-                                        <textarea placeholder="Other channels" ng-model="contactHubObject.currentSalesChannels[4]"
+                                        <textarea placeholder="Other channels"
+                                                  ng-model="contactHubObject.currentSalesChannels[4]"
                                                   ng-show="answer.type === 'textarea' && question.shortenedQuestion === 'Currently Selling'">
                                         </textarea>
 
@@ -187,47 +188,49 @@
                                                       ng-model="contactHubObject.amazonGoals[answer.id]">
                                             </textarea>
                                         </div>
-                                        <!--<textarea ng-show="answer.type === 'textarea'"></textarea>-->
-                                        <!--<input type="text" ng-show="answer.type === 'input text'">-->
+                                        <div ng-show="question.shortenedQuestion === 'Other Questions'">
+                                            <textarea ng-show="answer.type === 'textarea'" placeholder="last questions"
+                                                      ng-model="contactHubObject.otherQuestions[answer.id]"></textarea>
+                                            <input type="text" ng-show="answer.type === 'input text'"
+                                                   placeholder="last questions"
+                                                   ng-model="contactHubObject.otherQuestions[answer.id]">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
 
                 <!-- 3) Contact Form: -->
-                <div id="contact" ng-class="{'active' : (activeQuestion === myQuestions.length) }">
+                <div id="contact" ng-hide="userHasSent"
+                     ng-class="{'active' : (activeQuestion === myQuestions.length) }">
                     <div class="text-center">
                         <p class="text-center">Please tell us about you and we will help you.</p>
                     </div>
                     <div class="L9-form-container">
                         <form>
                             <label for="fname">Name</label>
-                            <input type="text" id="fname" name="firstname" placeholder="Your Name..">
+                            <input type="text" id="fname" name="firstname" placeholder="Your Name.."
+                                   ng-model="contactHubObject.name">
 
                             <label for="company">Company</label>
-                            <input type="text" id="company" name="lastname" placeholder="Your Company..">
-
-                            <label for="country">Country</label>
-                            <select id="country" name="country">
-                                <option value="australia">Australia</option>
-                                <option value="canada">Canada</option>
-                                <option value="usa">USA</option>
-                                <option value="usa">China</option>
-                                <option value="usa">Britain</option>
-                            </select>
+                            <input type="text" id="company" name="lastname" placeholder="Your Company.."
+                                   ng-model="contactHubObject.company">
 
                             <label for="email">Email</label>
-                            <input type="text" id="email" name="email" placeholder="Email">
+                            <input type="text" id="email" name="email" placeholder="Email"
+                            ng-model="contactHubObject.email">
 
                             <label for="subject">Message</label>
                             <textarea id="subject" name="subject" placeholder="Write something.."
-                                      style="height:150px"></textarea>
+                                      style="height:150px" ng-model="contactHubObject.message"></textarea>
                         </form>
                     </div>
                 </div>
+
+                <br><br><br>
+                <h1 ng-if="userHasSent">Thanks! Lab916 will contact you shortly ^_^</h1>
             </section>
         </div>
     </div>

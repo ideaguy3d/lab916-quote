@@ -23,13 +23,14 @@
         $scope.activeQuestionAnswered = 0;
         $scope.percentScore = 0;
         $scope.optionIsSelected = false;
+        $scope.userHasSent = false;
 
         // contactHub is the real HubSpot req obj
         $scope.contactHubObject = {
-            email: "test" + Math.random() + "@lab916.com",
-            name: "user" + Math.random(),
+            email: "",
+            name: "",
             company: "",
-            message: "message " + Math.random(),
+            message: "",
             number: "916-123-4567",
             currentSalesChannels: [],
             companySnapshot: [],
@@ -79,7 +80,8 @@
             }
             // manage Other Question slide
             else if (shQuestion === "Other Questions") {
-
+                console.log("jha - $scope.contactHubObject.otherQuestions = ");
+                console.log($scope.contactHubObject.otherQuestions);
             }
         }
 
@@ -88,6 +90,7 @@
                 console.log("jha - res.data =");
                 console.log(res.data);
             });
+            $scope.userHasSent = true;
         };
 
         // sort of like the engine that powers this questionnaire
@@ -177,7 +180,9 @@
             var monthlyMarketingBudgetAmazon = encodeURIComponent(data.companySnapshot[3]);
             var summaryExperience = encodeURIComponent(data.amazonGoals[0]);
             var amazonGoals = encodeURIComponent(data.amazonGoals[1]);
-
+            var website = encodeURIComponent(data.otherQuestions[0]);
+            var numberProductsCompany = encodeURIComponent(data.otherQuestions[1]);
+            var numberProductsAmazon = encodeURIComponent(data.otherQuestions[2]);
 
             //-- current sales channels is an array, so convert to a str:
             var currentSalesChannelsStr = "";
@@ -203,7 +208,8 @@
                 '&annual-marketing-budget-for-company=' + annualMarketingBudget +
                 '&monthly-budget-on-amazon=' + monthlyMarketingBudgetAmazon +
                 '&summary-of-experiences=' + summaryExperience + '&amazon-goals=' + amazonGoals +
-                '&amazon-services=' + amazonServices
+                '&amazon-services=' + amazonServices + '&website=' + website +
+                '&number-of-products=' + numberProductsCompany + '&number-of-products-on-amazon=' + numberProductsAmazon
             );
         };
 
